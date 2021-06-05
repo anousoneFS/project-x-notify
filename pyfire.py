@@ -1,5 +1,5 @@
 import pyrebase
-
+from app import NotifyToLineChatbot
 class MyStuffTracker(object):
     """Tracks changes of my stuff in Firebase"""
 
@@ -39,6 +39,11 @@ class MyStuffTracker(object):
                 # self.my_stuff: List[dict] = message["data"]
                 self.my_stuff.append(message["data"])
                 print(self.my_stuff)
+
+                if message["data"] > 38:
+                    print('ອຸນຫະພູມສູງເກີນ 38 ອົງສາ')
+                    NotifyToLineChatbot('ອຸນຫະພູມໃນໂຮງເຮືອນສູງເກີນ 38 ອົງສາ')
+
             else:
                 print(
                     "Something updated somewhere, I dont't care I just want the latest snapshot of my stuff"
