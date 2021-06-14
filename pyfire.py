@@ -1,18 +1,21 @@
 import pyrebase
 from app import NotifyToLineChatbot
+
+
 class MyStuffTracker(object):
     """Tracks changes of my stuff in Firebase"""
 
     _db = pyrebase.initialize_app(
         {
-            "apiKey": "AIzaSyACjvHy9WX_Cx0NC8B24I1UIiGBC8ifyNA",
-            "authDomain": "smart-farm-3ef1a.firebaseapp.com",
-            "databaseURL": "https://smart-farm-3ef1a.firebaseio.com",
-            "projectId": "smart-farm-3ef1a",
-            "storageBucket": "smart-farm-3ef1a.appspot.com",
-            "messagingSenderId": "849173162919",
-            "appId": "1:849173162919:web:8c4c08ecbfe0101d93e482",
-            "measurementId": "G-5HM0B3HQXK",
+            "apiKey": "AIzaSyDr0UwYjDiVbU_6T7VdrEtlcGdV4PIVRdI",
+            "authDomain": "project-x-23d73.firebaseapp.com",
+            "databaseURL": "https://project-x-23d73-default-rtdb.firebaseio.com",
+            "projectId": "project-x-23d73",
+            "storageBucket": "project-x-23d73.appspot.com",
+            "messagingSenderId": "240804399954",
+            "appId": "1:240804399954:web:4984d9076e156654a1888b",
+            "measurementId": "G-HK4GEQL712"
+
         }
     ).database()
 
@@ -56,7 +59,7 @@ class MyStuffTracker(object):
     def __init__(self) -> None:
         """Start tracking my stuff changes in Firebase"""
         super().__init__()
-        self._db.child("my_stuff").stream(self.stream_handler)
+        self._db.child("data_sensor_from_arduino/data_from_arduino").stream(self.stream_handler)
 
 
 tracker = MyStuffTracker()
