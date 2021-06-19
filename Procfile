@@ -1,2 +1,2 @@
-web: python pyfire.py
-worker: python pyfire.py
+web: python my_threading.py
+worker: python my_threading.py
