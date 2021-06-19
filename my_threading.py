@@ -51,51 +51,51 @@ def stream_handler(message):
 
             if int(dataSplit[1]) > maxTempAir:
                 print(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ສູງກວ່າ {maxTempAir} ອົງສາ ແລ້ວ!!!')
-                # NotifyToLineChatbot('ອຸນຫະພູມໃນໂຮງເຮືອນສູງເກີນ 1 ອົງສາ')
+                NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ສູງກວ່າ {maxTempAir} ອົງສາ ແລ້ວ!!!')
             
             if int(dataSplit[2]) > maxHumid:
                 print(f'ຕອນນີ້ຄວາມຊຸມສູງກວ່າ {maxHumid} % ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄວາມຊຸມສູງກວ່າ {maxHumid} % ແລ້ວ!!!')
 
             if int(dataSplit[3]) > maxPh:
                 print(f'ຕອນນີ້ຄ່າ PH ໄດ້ສູງກວ່າ {maxPh} ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ PH ໄດ້ສູງກວ່າ {maxPh} ແລ້ວ!!!')
 
             if int(dataSplit[4]) > maxEc:
                 print(f'ຕອນນີ້ຄ່າ EC ໄດ້ສູງກວ່າ {maxEc} ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ EC ໄດ້ສູງກວ່າ {maxEc} ແລ້ວ!!!')
 
             if int(dataSplit[5]) > maxTempWater:
                 print(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ສູງກວ່າ {maxTempWater} ອົງສາ ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ສູງກວ່າ {maxTempWater} ອົງສາ ແລ້ວ!!!')
 
             if int(dataSplit[6]) > maxLight:
                 print(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ສູງກວ່າ {maxLight} Lux ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ສູງກວ່າ {maxLight} Lux ແລ້ວ!!!')
         # =====================================================================
             if int(dataSplit[1]) < minTempAir:
                 print(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ຕໍ່າກວ່າ {minTempAir} ອົງສາ ແລ້ວ!!!')
-                # NotifyToLineChatbot('ອຸນຫະພູມໃນໂຮງເຮືອນສູງເກີນ 1 ອົງສາ')
+                NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ຕໍ່າກວ່າ {minTempAir} ອົງສາ ແລ້ວ!!!')
             
             if int(dataSplit[2]) < minHumid:
                 print(f'ຕອນນີ້ຄວາມຊຸມຕໍ່າກວ່າ {minHumid} % ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄວາມຊຸມຕໍ່າກວ່າ {minHumid} % ແລ້ວ!!!')
 
             if int(dataSplit[3]) < minPh:
                 print(f'ຕອນນີ້ຄ່າ PH ໄດ້ຕໍ່າກວ່າ {minPh} ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ PH ໄດ້ຕໍ່າກວ່າ {minPh} ແລ້ວ!!!')
 
             if int(dataSplit[4]) < minEc:
                 print(f'ຕອນນີ້ຄ່າ EC ໄດ້ຕໍ່າກວ່າ {minEc} ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ EC ໄດ້ຕໍ່າກວ່າ {minEc} ແລ້ວ!!!')
 
             if int(dataSplit[5]) < minTempWater:
                 print(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ຕໍ່າກວ່າ {minTempWater} ອົງສາ ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ຕໍ່າກວ່າ {minTempWater} ອົງສາ ແລ້ວ!!!')
 
             if int(dataSplit[6]) < minLight:
                 print(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ຕໍ່າກວ່າ {minLight} Lux ແລ້ວ!!!')
-                # NotifyToLineChatbot('ຄວາມຊຸມໃນໂຮງເຮືອນສູງເກີນໄປ')
+                NotifyToLineChatbot(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ຕໍ່າກວ່າ {minLight} Lux ແລ້ວ!!!')
 
 
         else:
