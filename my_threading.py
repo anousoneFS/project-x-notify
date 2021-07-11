@@ -18,6 +18,7 @@ _db = pyrebase.initialize_app(
 ).database()
 
 allData = []
+allTime = []
 global num
 num = 0
 def stream_handler(message):
@@ -42,58 +43,64 @@ def stream_handler(message):
             ec = dataSplit[4]
             temp_water = dataSplit[5]
             light = dataSplit[6]
+            
+            date_list = date.split(":")
+            newDate = date_list[0] + ":" + date_list[1]
 
-            data = "{\"time\":" + "\"" + date + "\"" + ", \"temp\": " + "\"" + str(
+            data = "{\"time\":" + "\"" + newDate + "\"" + ", \"temp\": " + "\"" + str(
                 temp) + "\"" + ", \"humid\": " + "\"" + str(humid) + "\"" + ",\"ph\":" + "\"" + str(ph) + "\"" + ",\"light\":" + "\"" + str(light) + "\"" + ",\"ec\":" + "\"" + str(ec) + "\"" + ",\"temp_water\":" + "\"" + str(temp_water) + "\""+"}"
 
             mypath = 'sensor-values2/' + date.split(' ')[0]
-            _db.child(mypath).push(data)
 
-            if int(dataSplit[1]) > maxTempAir:
+            if(newDate not in allTime):
+                _db.child(mypath).push(data)
+                allTime.append(newDate)
+
+            if float(dataSplit[1]) > float(maxTempAir):
                 print(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ສູງກວ່າ {maxTempAir} ອົງສາ ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ສູງກວ່າ {maxTempAir} ອົງສາ ແລ້ວ!!!')
             
-            if int(dataSplit[2]) > maxHumid:
+            if float(dataSplit[2]) > maxHumid:
                 print(f'ຕອນນີ້ຄວາມຊຸມສູງກວ່າ {maxHumid} % ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄວາມຊຸມສູງກວ່າ {maxHumid} % ແລ້ວ!!!')
 
-            if int(dataSplit[3]) > maxPh:
+            if float(dataSplit[3]) > maxPh:
                 print(f'ຕອນນີ້ຄ່າ PH ໄດ້ສູງກວ່າ {maxPh} ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ PH ໄດ້ສູງກວ່າ {maxPh} ແລ້ວ!!!')
 
-            if int(dataSplit[4]) > maxEc:
+            if float(dataSplit[4]) > maxEc:
                 print(f'ຕອນນີ້ຄ່າ EC ໄດ້ສູງກວ່າ {maxEc} ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ EC ໄດ້ສູງກວ່າ {maxEc} ແລ້ວ!!!')
 
-            if int(dataSplit[5]) > maxTempWater:
+            if float(dataSplit[5]) > maxTempWater:
                 print(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ສູງກວ່າ {maxTempWater} ອົງສາ ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ສູງກວ່າ {maxTempWater} ອົງສາ ແລ້ວ!!!')
 
-            if int(dataSplit[6]) > maxLight:
+            if float(dataSplit[6]) > maxLight:
                 print(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ສູງກວ່າ {maxLight} Lux ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ສູງກວ່າ {maxLight} Lux ແລ້ວ!!!')
         # =====================================================================
-            if int(dataSplit[1]) < minTempAir:
+            if float(dataSplit[1]) < minTempAir:
                 print(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ຕໍ່າກວ່າ {minTempAir} ອົງສາ ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມອາກາດໄດ້ຕໍ່າກວ່າ {minTempAir} ອົງສາ ແລ້ວ!!!')
             
-            if int(dataSplit[2]) < minHumid:
+            if float(dataSplit[2]) < minHumid:
                 print(f'ຕອນນີ້ຄວາມຊຸມຕໍ່າກວ່າ {minHumid} % ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄວາມຊຸມຕໍ່າກວ່າ {minHumid} % ແລ້ວ!!!')
 
-            if int(dataSplit[3]) < minPh:
+            if float(dataSplit[3]) < minPh:
                 print(f'ຕອນນີ້ຄ່າ PH ໄດ້ຕໍ່າກວ່າ {minPh} ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ PH ໄດ້ຕໍ່າກວ່າ {minPh} ແລ້ວ!!!')
 
-            if int(dataSplit[4]) < minEc:
+            if float(dataSplit[4]) < minEc:
                 print(f'ຕອນນີ້ຄ່າ EC ໄດ້ຕໍ່າກວ່າ {minEc} ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າ EC ໄດ້ຕໍ່າກວ່າ {minEc} ແລ້ວ!!!')
 
-            if int(dataSplit[5]) < minTempWater:
+            if float(dataSplit[5]) < minTempWater:
                 print(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ຕໍ່າກວ່າ {minTempWater} ອົງສາ ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ອຸນຫະພູມນໍ້າໄດ້ຕໍ່າກວ່າ {minTempWater} ອົງສາ ແລ້ວ!!!')
 
-            if int(dataSplit[6]) < minLight:
+            if float(dataSplit[6]) < minLight:
                 print(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ຕໍ່າກວ່າ {minLight} Lux ແລ້ວ!!!')
                 NotifyToLineChatbot(f'ຕອນນີ້ຄ່າແສງແດດໄດ້ຕໍ່າກວ່າ {minLight} Lux ແລ້ວ!!!')
 
@@ -131,68 +138,68 @@ def getSettingData(message):
             settingData.append(data)
             print(settingData)
 
-            maxTempAir = int(data['maxTempAir'])
-            maxHumid = int(data['maxHumid'])
-            maxEc = int(data['maxEc'])
-            maxPh = int(data['maxPh'])
-            maxTempWater = int(data['maxTempWater'])
-            maxLight = int(data['maxLight'])
-            minTempAir = int(data['minTempAir'])
-            minTempWater = int(data['minTempWater'])
-            minEc = int(data['minEc'])
-            minPh = int(data['minPh'])
-            minLight = int(data['minLight'])
-            minHumid = int(data['minHumid'])
+            maxTempAir = float(data['maxTempAir'])
+            maxHumid = float(data['maxHumid'])
+            maxEc = float(data['maxEc'])
+            maxPh = float(data['maxPh'])
+            maxTempWater = float(data['maxTempWater'])
+            maxLight = float(data['maxLight'])
+            minTempAir = float(data['minTempAir'])
+            minTempWater = float(data['minTempWater'])
+            minEc = float(data['minEc'])
+            minPh = float(data['minPh'])
+            minLight = float(data['minLight'])
+            minHumid = float(data['minHumid'])
 
         elif message['path'] == '/maxTempWater':
             data = message['data']
             print(data)
-            maxTempWater = int(data)
+            maxTempWater = float(data)
         elif message['path'] == '/maxHumid':
             data = message['data']
             print(data)
-            maxHumid = int(data)
+            maxHumid = float(data)
         elif message['path'] == '/maxPh':
             data = message['data']
             print(data)
-            maxPh = int(data)
+            maxPh = float(data)
         elif message['path'] == '/maxEc':
             data = message['data']
             print(data)
-            maxEc = int(data)
+            maxEc = float(data)
         elif message['path'] == '/maxTempAir':
             data = message['data']
             print(data)
-            maxTempAir = int(data)
+            maxTempAir = float(data)
         elif message['path'] == '/maxLight':
             data = message['data']
             print(data)
-            maxLight = int(data)
+            maxLight = float(data)
         # ===========================================
         elif message['path'] == '/minTempWater':
             data = message['data']
             print(data)
-            minTempWater = int(data)
+            minTempWater = float(data)
         elif message['path'] == '/minHumid':
             data = message['data']
             print(data)
-            minHumid = int(data)
+            minHumid = float(data)
         elif message['path'] == '/minPh':
             data = message['data']
             print(data)
-            minPh = int(data)
+            minPh = float(data)
         elif message['path'] == '/minEc':
             data = message['data']
             print(data)
-            minEc = int(data)
+            minEc = float(data)
         elif message['path'] == '/minTempAir':
             data = message['data']
             print(data)
-            minTempAir = int(data)
+            minTempAir = float(data)
         elif message['path'] == '/minLight':
             data = message['data']
             print(data)
-            minLight = int(data)
+            minLight = float(data)
 
 
         else:
