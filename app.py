@@ -5,6 +5,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv('.env')
 
+#old asscess token
+#Channel_access_token = 'MzDOjvnMWXtqfZFpmsf9wRC43cPRyZaSMm7sTrNw/azWCpe5baR6FF3JZM5MhNCdsTwcZBWvxrVGazB7KFhCJdCa7km/RB7ptoCcFM8iZSdwZ+V3ZNK/Z+qOkSxTuOfH95Bl5Y9zf61MGJs8fYf2yQdB04t89/1O/w1cDnyilFU='
+
 def NotifyToLineChatbot(Reply_message):
     channel_access_token = os.environ.get('Channel_access_token')
     Authorization = "Bearer {}".format(channel_access_token)  
@@ -27,6 +30,6 @@ def NotifyToLineChatbot(Reply_message):
     LINE_API = "https://api.line.me/v2/bot/message/broadcast"
     requests.post(LINE_API, headers=headers, data=data)
 if __name__ == "__main__":
-    NotifyToLineChatbot('ຕອນນີ້ ph ໃນອ່າງຜັກສູງເກີນໄປ 6.2')
+    NotifyToLineChatbot('ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ project-x farm')
     print('sended')
 
